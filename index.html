@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aadit Vanjari — Product Designer & Prototypist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #06402b;
+    --bg-deep: #052f20;
+    --panel: #073a27;
+    --title: #ffffff;
+    --title-dim: rgba(255,255,255,0.55);
+    --line: rgba(57,231,95,0.22);
+    --body: #39e75f;
+    --accent: #39e75f;
+    --accent-dim: rgba(57,231,95,0.65);
+    --muted: #b9d6c6;
+    --tan: #c9a66b;
+    --stone: #9a9a8a;
+    --near-black: #14140f;
+    --max: 1180px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      linear-gradient(var(--bg), var(--bg)) fixed,
+      repeating-linear-gradient(0deg, rgba(57,231,95,0.035) 0px, rgba(57,231,95,0.035) 1px, transparent 1px, transparent 64px),
+      repeating-linear-gradient(90deg, rgba(57,231,95,0.035) 0px, rgba(57,231,95,0.035) 1px, transparent 1px, transparent 64px);
+    background-color: var(--bg);
+    color: var(--body);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+
+  h1,h2,h3, .display{
+    font-family: 'Inter', sans-serif;
+    color: var(--title);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.05;
+  }
+
+  .label{
+    font-family:'Inter', sans-serif;
+    font-size:12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent-dim);
+    font-weight:600;
+  }
+
+  .section-title{
+    font-size: clamp(22px, 2.6vw, 30px);
+    margin-bottom: 4px;
+  }
+  .section-statement{
+    font-family: 'Inter', sans-serif;
+    text-transform: none;
+    letter-spacing: normal;
+    color: var(--body);
+    font-weight: 700;
+    font-size: clamp(17px, 1.6vw, 20px);
+    line-height: 1.6;
+    max-width: 640px;
+    margin-top: 14px;
+  }
+
+  .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+  section{ position:relative; padding: 120px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: fixed; top:0; left:0; right:0; z-index: 50;
+    background: rgba(6,64,43,0.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:18px; padding-bottom:18px;
+  }
+  .nav-mark{
+    font-family:'Inter', sans-serif;
+    font-weight: 800;
+    color: var(--title);
+    font-size: 15px;
+    letter-spacing: 0.08em;
+  }
+  .nav-links{ display:flex; gap:28px; }
+  .nav-links a{
+    font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+    color: var(--muted); font-weight:600;
+    transition: color .2s ease;
+  }
+  .nav-links a:hover{ color: var(--accent); }
+  .nav-links a:focus-visible, a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--accent); outline-offset: 3px; border-radius:2px;
+  }
+
+  /* ---------- corner-bracket panel ---------- */
+  .spec-panel{
+    position:relative;
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(57,231,95,0.05), rgba(57,231,95,0) 40%);
+    padding: 36px 32px;
+  }
+  .corner{ position:absolute; width:14px; height:14px; pointer-events:none; }
+  .corner.tl{ top:-1px; left:-1px; border-top:2px solid var(--accent); border-left:2px solid var(--accent); }
+  .corner.tr{ top:-1px; right:-1px; border-top:2px solid var(--accent); border-right:2px solid var(--accent); }
+  .corner.bl{ bottom:-1px; left:-1px; border-bottom:2px solid var(--accent); border-left:2px solid var(--accent); }
+  .corner.br{ bottom:-1px; right:-1px; border-bottom:2px solid var(--accent); border-right:2px solid var(--accent); }
+
+  /* ---------- HERO ---------- */
+  #hero{
+    padding-top: 200px;
+    min-height: 92vh;
+    display:flex; flex-direction:column; justify-content:center;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-eyebrow{ margin-bottom: 22px; }
+  #hero h1{
+    font-size: clamp(40px, 6.4vw, 84px);
+    max-width: 900px;
+  }
+  #hero h1 span{ color: var(--body); display:block; font-size: 0.42em; font-family:'Inter'; text-transform:none; letter-spacing:0; font-weight:500; margin-top:18px; max-width:640px; line-height:1.5; }
+
+  .iteration-strip{ margin-top: 72px; }
+  .iteration-strip .cap{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-bottom:14px;
+  }
+  .iteration-strip .cap span{ font-size:11px; letter-spacing:0.18em; color:var(--muted); text-transform:uppercase; }
+  .iteration-strip svg{ width:100%; height:auto; display:block; }
+
+  /* ---------- VALUE ---------- */
+  #value .wrap{ display:grid; grid-template-columns: 1fr; gap:40px; }
+  .rule-bar{ border-left: 3px solid var(--accent); padding-left: 28px; }
+  .value-copy{ margin-top:20px; color: var(--muted); font-size:18px; max-width:640px; line-height:1.7; }
+
+  /* ---------- WORKFLOW ---------- */
+  .stage-grid{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap:0;
+    margin-top:64px; border-top:1px solid var(--line);
+  }
+  .stage{
+    padding: 32px 26px; border-right:1px solid var(--line);
+    position:relative;
+  }
+  .stage:last-child{ border-right:none; }
+  .stage-num{
+    font-family:'Inter'; font-weight:800; color: var(--accent-dim); font-size:34px; margin-bottom:18px; display:block;
+  }
+  .stage h3{ font-size:19px; margin-bottom:14px; letter-spacing:0.04em; }
+  .stage ul{ list-style:none; }
+  .stage li{
+    color: var(--muted); font-size:14.5px; line-height:1.9;
+    padding-left: 14px; position:relative;
+  }
+  .stage li::before{
+    content:''; position:absolute; left:0; top:10px; width:5px; height:1px; background: var(--accent); opacity:.6;
+  }
+  .stage-connector{
+    position:absolute; top:14px; right:-1px; width:8px; height:8px;
+    border-radius:50%; background: var(--bg); border:2px solid var(--accent);
+    transform: translateX(50%);
+  }
+
+  /* ---------- SERVICES ---------- */
+  .service-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:24px; margin-top: 60px;
+  }
+  .service-card{
+    display:flex; flex-direction:column; height:100%;
+  }
+  .service-tier{ font-size:12px; letter-spacing:0.2em; color:var(--tan); text-transform:uppercase; font-weight:700; margin-bottom:14px;}
+  .service-card h3{ font-size:24px; margin-bottom:14px; }
+  .service-card .desc{ color:var(--muted); font-size:14.5px; line-height:1.7; margin-bottom:26px; min-height:84px;}
+  .service-price{
+    font-family:'Inter'; font-weight:800; font-size: 30px; color: var(--body); margin: 10px 0 22px;
+    padding-top:18px; border-top: 1px dashed var(--line);
+  }
+  .service-price sub{ font-family:'Inter'; font-size:13px; color:var(--muted); font-weight:600; }
+  .service-card ul{ list-style:none; margin-top:auto; }
+  .service-card li{
+    font-size: 14px; color: var(--body); padding: 9px 0; border-top: 1px solid var(--line);
+    padding-left: 16px; position:relative;
+  }
+  .service-card li:first-child{ border-top:none; }
+  .service-card li::before{ content:'—'; position:absolute; left:0; color: var(--accent-dim); }
+  .service-card.featured{ background: linear-gradient(180deg, rgba(57,231,95,0.1), rgba(57,231,95,0) 55%); }
+  .service-card.featured .corner{ border-color: var(--accent); }
+
+  /* ---------- WORK PROOF ---------- */
+  #work .work-grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items:start; margin-top: 56px;
+  }
+  .file-stamp{
+    display:inline-block; font-size:11px; letter-spacing:0.18em; color:var(--near-black);
+    background: var(--accent); padding:5px 10px; font-weight:700; margin-bottom:24px;
+  }
+  .work-field{ margin-bottom: 26px; }
+  .work-field .label{ margin-bottom:8px; display:block; }
+  .work-field .val{ font-size: 19px; font-weight:600; }
+  .work-field .val.brief{ font-weight:400; color:var(--muted); font-size:16px; line-height:1.7; max-width:480px; }
+  .swatch-row{ display:flex; gap:8px; margin-top:20px; }
+  .swatch{ width:36px; height:52px; border-radius: 0 0 40px 40px / 0 0 60px 60px; opacity:.9; }
+
+  /* ---------- PROJECT RAIL ---------- */
+  .project-rail-outer{ margin-top: 56px; }
+  .project-rail{
+    display:flex; gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) transparent;
+    padding-bottom: 10px;
+  }
+  .project-rail::-webkit-scrollbar{ height:6px; }
+  .project-rail::-webkit-scrollbar-thumb{ background: var(--line); }
+  .project-card{
+    scroll-snap-align: start;
+    flex: 0 0 calc(50% - 10px);
+    min-height: 220px;
+    display:flex; flex-direction:column; justify-content:space-between;
+    transition: border-color .2s ease, transform .2s ease, background .2s ease;
+  }
+  .project-card:hover{ transform: translateY(-3px); background: linear-gradient(180deg, rgba(57,231,95,0.1), rgba(57,231,95,0) 55%); }
+  .project-card:hover .corner{ border-color: var(--accent); }
+  .project-index{ font-family:'Inter'; font-weight:800; font-size:13px; color: var(--accent-dim); }
+  .project-name{
+    font-family:'Inter'; font-weight:800; color: var(--title); font-size: clamp(18px, 2.2vw, 24px);
+    text-transform:uppercase; letter-spacing:0.02em; margin: 22px 0;
+  }
+  .project-go{ font-size:13px; letter-spacing:0.08em; color: var(--accent); font-weight:600; text-transform:uppercase; }
+  .rail-controls{ display:flex; gap:16px; margin-top: 20px; align-items:center; }
+  .rail-btn{
+    width:40px; height:40px; border:1px solid var(--line); background:transparent;
+    color: var(--accent); font-size:16px; cursor:pointer; transition: border-color .2s ease, background .2s ease;
+  }
+  .rail-btn:hover{ border-color: var(--accent); background: rgba(57,231,95,0.08); }
+
+  @media (max-width: 700px){
+    .project-card{ flex-basis: 82%; }
+  }
+
+  /* ---------- FILTER BAR ---------- */
+  .filter-bar{ margin-top: 56px; display:flex; flex-direction:column; gap:20px; }
+  .filter-group{ display:flex; align-items:baseline; gap:18px; flex-wrap:wrap; }
+  .filter-label{
+    font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted);
+    font-weight:600; flex: 0 0 68px;
+  }
+  .filter-pills{ display:flex; flex-wrap:wrap; gap:10px; }
+  .pill{
+    font-family:'Inter'; font-size:13px; font-weight:600; color: var(--muted);
+    background: transparent; border: 1px solid var(--line); padding: 8px 16px;
+    cursor:pointer; transition: border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .pill:hover{ border-color: var(--accent-dim); color: var(--body); }
+  .pill.active{ border-color: var(--accent); color: var(--near-black); background: var(--accent); }
+
+  /* ---------- PROJECT GRID ---------- */
+  .project-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 44px;
+  }
+  .project-grid .project-card{
+    min-height: 260px; padding: 30px 26px;
+  }
+  .project-tags{ display:flex; flex-wrap:wrap; gap:7px; margin-bottom:20px; }
+  .tag{
+    font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; font-weight:700;
+    padding: 4px 9px; border:1px solid var(--line);
+  }
+  .tag-stream{ color: var(--accent); border-color: rgba(57,231,95,0.4); }
+  .tag-who{ color: var(--tan); border-color: rgba(201,166,107,0.35); }
+  .project-grid .project-name{ margin: 0 0 12px; font-size: clamp(17px, 1.8vw, 21px); }
+  .project-desc{
+    color: var(--muted); font-size:14px; line-height:1.65; margin-bottom:22px;
+  }
+  .project-grid .project-go{ margin-top:auto; }
+  .no-results{ color: var(--muted); font-size:15px; margin-top:44px; display:none; }
+  .no-results.show{ display:block; }
+  .project-card.is-hidden{ display:none; }
+
+  @media (max-width: 900px){
+    .project-grid{ grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px){
+    .project-grid{ grid-template-columns: 1fr; }
+    .filter-group{ flex-direction:column; align-items:flex-start; gap:10px; }
+    .filter-label{ flex-basis:auto; }
+  }
+
+  /* ---------- FIT / WHY ---------- */
+  .two-col{ display:grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
+  .two-col h3{ font-size:20px; margin-bottom:18px; }
+  .two-col p{ color: var(--muted); font-size:15.5px; line-height:1.8; }
+
+  /* ---------- CONTACT ---------- */
+  #contact{ padding-bottom: 100px; }
+  #contact .wrap{ text-align:center; }
+  #contact .section-statement{ margin-left:auto; margin-right:auto; }
+  .contact-copy{ color:var(--muted); margin: 18px auto 40px; max-width:520px; font-size:16px; }
+  .cta-btn{
+    display:inline-block; font-family:'Inter'; font-weight:800; font-size:14px; letter-spacing:0.08em;
+    color: var(--near-black); background: var(--accent); padding: 18px 40px;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .cta-btn:hover{ transform: translateY(-2px); box-shadow: 0 10px 30px rgba(57,231,95,0.25); }
+  footer{ text-align:center; padding: 34px 0; color: var(--muted); font-size:12px; letter-spacing:0.08em; }
+
+  /* reveal */
+  .reveal{ opacity:0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  @media (max-width: 900px){
+    .stage-grid{ grid-template-columns: 1fr 1fr; }
+    .stage{ border-right:1px solid var(--line); }
+    .stage:nth-child(2n){ border-right:none; }
+    .stage:nth-child(3), .stage:nth-child(4){ border-top:1px solid var(--line); }
+    .service-grid{ grid-template-columns: 1fr; }
+    #work .work-grid{ grid-template-columns: 1fr; }
+    .two-col{ grid-template-columns: 1fr; }
+    .nav-links{ display:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ transition:none; opacity:1; transform:none; }
+    .cta-btn{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-mark">AV / PROTOTYPIST</div>
+    <div class="nav-links">
+      <a href="#value">Value</a>
+      <a href="#workflow">Workflow</a>
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#fit">Fit</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="wrap">
+    <div class="label hero-eyebrow">Product Designer &amp; Prototypist</div>
+    <h1>Aadit Vanjari
+      <span>Aesthetics are informed by purpose, from color and texture to the overall form of every product I make.</span>
+    </h1>
+  </div>
+</section>
+
+<section id="value">
+  <div class="wrap">
+    <div class="rule-bar reveal">
+      <h2 class="section-title">What value do I add</h2>
+      <p class="section-statement">I turn rough product ideas into functional, manufacturable prototypes without the friction of hiring multiple specialists.</p>
+      <p class="value-copy">One person covering mechanical CAD, circuit design, and physical fabrication, so an idea moves from sketch to a tested, buildable object without getting lost in handoffs between separate freelancers.</p>
+    </div>
+  </div>
+</section>
+
+<section id="workflow">
+  <div class="wrap">
+    <h2 class="section-title reveal">My Workflow</h2>
+    <p class="section-statement reveal">Four stages, one continuous build</p>
+
+    <div class="stage-grid reveal">
+      <div class="stage">
+        <span class="stage-connector"></span>
+        <span class="stage-num">01</span>
+        <h3>Research</h3>
+        <ul>
+          <li>Desk research</li>
+          <li>Observation</li>
+          <li>Interviews</li>
+          <li>Research synthesis</li>
+          <li>Insight formulation</li>
+        </ul>
+      </div>
+      <div class="stage">
+        <span class="stage-connector"></span>
+        <span class="stage-num">02</span>
+        <h3>Ideation</h3>
+        <ul>
+          <li>Mass ideation</li>
+          <li>Sketching</li>
+          <li>Focus groups</li>
+        </ul>
+      </div>
+      <div class="stage">
+        <span class="stage-connector"></span>
+        <span class="stage-num">03</span>
+        <h3>Prototyping</h3>
+        <ul>
+          <li>Adding detail to the final idea</li>
+          <li>Low-fidelity prototype</li>
+          <li>3D modeling</li>
+          <li>Circuit planning</li>
+          <li>High-fidelity prototype</li>
+        </ul>
+      </div>
+      <div class="stage">
+        <span class="stage-num">04</span>
+        <h3>Testing</h3>
+        <ul>
+          <li>Usability testing</li>
+          <li>Heuristic evaluation</li>
+          <li>User surveys</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <h2 class="section-title reveal">What services I offer</h2>
+    <p class="section-statement reveal">Three ways to work together</p>
+
+    <div class="service-grid reveal">
+      <div class="service-card spec-panel">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <div class="service-tier">Starter</div>
+        <h3>Prototype only</h3>
+        <div class="desc">A high-fidelity prototype for a given physical or digital product idea.</div>
+        <div class="service-price">₹12,000<sub> onward</sub></div>
+        <ul>
+          <li>High-fidelity prototype</li>
+          <li>All digital files, original format</li>
+          <li>Circuit diagrams (if applicable)</li>
+          <li>Build instructions</li>
+        </ul>
+      </div>
+
+      <div class="service-card spec-panel featured">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <div class="service-tier">Core</div>
+        <h3>Prototype + manufacturing plan</h3>
+        <div class="desc">A high-fidelity prototype plus a manufacturing plan for a given product idea.</div>
+        <div class="service-price">₹22,000<sub> onward</sub></div>
+        <ul>
+          <li>High-fidelity prototype</li>
+          <li>All digital files, original format</li>
+          <li>Circuit diagrams</li>
+          <li>Build instructions</li>
+          <li>Manufacturing plan</li>
+        </ul>
+      </div>
+
+      <div class="service-card spec-panel">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <div class="service-tier">Premium</div>
+        <h3>Full design cycle</h3>
+        <div class="desc">Design, low-fidelity prototyping, testing and iteration, through to a tried-and-tested high-fidelity prototype and manufacturing plan for a given problem statement or brief.</div>
+        <div class="service-price">₹50,000<sub>onward</sub></div>
+        <ul>
+          <li>High-fidelity prototype, tried &amp; tested</li>
+          <li>All digital files, original format</li>
+          <li>Circuit diagrams</li>
+          <li>Build instructions</li>
+          <li>Manufacturing plan</li>
+          <li>Design research notes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <h2 class="section-title reveal">Projects</h2>
+    <p class="section-statement reveal">Filter by stream or by who it was for — most projects sit in more than one bucket.</p>
+
+    <div class="filter-bar reveal">
+      <div class="filter-group">
+        <span class="filter-label">Stream</span>
+        <div class="filter-pills" data-group="stream">
+          <button type="button" class="pill active" data-value="all">All</button>
+          <button type="button" class="pill" data-value="tangible">Tangible Product Design</button>
+          <button type="button" class="pill" data-value="uiux">UI/UX Design</button>
+          <button type="button" class="pill" data-value="creative-tech">Creative Technology</button>
+          <button type="button" class="pill" data-value="branding">Branding</button>
+          <button type="button" class="pill" data-value="illustration">Illustrations</button>
+          <button type="button" class="pill" data-value="research">Research</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">For</span>
+        <div class="filter-pills" data-group="who">
+          <button type="button" class="pill active" data-value="all">All</button>
+          <button type="button" class="pill" data-value="navarachna">Navarachna Lab</button>
+          <button type="button" class="pill" data-value="alien">Alien Healthcare</button>
+          <button type="button" class="pill" data-value="inclusive">Inclusive Innovation Mentorship</button>
+          <button type="button" class="pill" data-value="misc">Miscellaneous</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-grid reveal" id="projectGrid">
+
+      <a href="project-gravity-cutter.html" class="project-card spec-panel" data-stream="tangible" data-who="misc">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <div class="project-tags">
+          <span class="tag tag-stream">Tangible Product Design</span>
+          <span class="tag tag-who">Miscellaneous</span>
+        </div>
+        <span class="project-name">Gravity Cutter</span>
+        <p class="project-desc">An ergonomic box-cutter redesign that locks and releases its blade using gravity alone, built for model-makers who cut for hours at a time.</p>
+        <span class="project-go">View project →</span>
+      </a>
+
+      <a href="project-navarachna-lab.html" class="project-card spec-panel" data-stream="tangible research" data-who="navarachna">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <div class="project-tags">
+          <span class="tag tag-stream">Tangible Product Design</span>
+          <span class="tag tag-stream">Research</span>
+          <span class="tag tag-who">Navarachna Lab</span>
+        </div>
+        <span class="project-name">Denim Composites &amp; Exhibition Systems</span>
+        <p class="project-desc">A year of material R&amp;D into denim-resin composites, plus the CNC-milled display stands built for Navarachna Lab's exhibitions.</p>
+        <span class="project-go">View project →</span>
+      </a>
+
+      <a href="project-navarachna-diy-kit.html" class="project-card spec-panel" data-stream="branding" data-who="navarachna">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <div class="project-tags">
+          <span class="tag tag-stream">Branding</span>
+          <span class="tag tag-who">Navarachna Lab</span>
+        </div>
+        <span class="project-name">Navarachna Lab DIY Kit</span>
+        <p class="project-desc">Packaging and instruction-manual design for a take-home kit that turns waste denim into a butterfly pouch.</p>
+        <span class="project-go">View project →</span>
+      </a>
+
+      <a href="project-alien-healthcare.html" class="project-card spec-panel" data-stream="branding" data-who="alien">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <div class="project-tags">
+          <span class="tag tag-stream">Branding</span>
+          <span class="tag tag-who">Alien Healthcare</span>
+        </div>
+        <span class="project-name">Alien Healthcare Brand Identity</span>
+        <p class="project-desc">Logo system, typography and a full usage manual for a wearable that delivers hot and cold therapy in one device.</p>
+        <span class="project-go">View project →</span>
+      </a>
+
+      <a href="project-chrona-cafe.html" class="project-card spec-panel" data-stream="branding" data-who="misc">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <div class="project-tags">
+          <span class="tag tag-stream">Branding</span>
+          <span class="tag tag-who">Miscellaneous</span>
+        </div>
+        <span class="project-name">Chrona Café Brand Identity</span>
+        <p class="project-desc">A whimsical, time-travel-themed identity system for a story-driven café concept, from logo construction to collateral.</p>
+        <span class="project-go">View project →</span>
+      </a>
+
+      <a href="project-inclusive-innovations.html" class="project-card spec-panel" data-stream="uiux creative-tech research" data-who="inclusive">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <div class="project-tags">
+          <span class="tag tag-stream">UI/UX Design</span>
+          <span class="tag tag-stream">Creative Technology</span>
+          <span class="tag tag-who">Inclusive Innovation Mentorship</span>
+        </div>
+        <span class="project-name">Inclusive Innovations Mentorship</span>
+        <p class="project-desc">Mentored five student teams from concept to working prototype — an assistive smart cane, a focus-tracking app, a speech-to-text tool, and more.</p>
+        <span class="project-go">View project →</span>
+      </a>
+
+      <a href="project-throw-and-pinch.html" class="project-card spec-panel" data-stream="creative-tech" data-who="misc">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <div class="project-tags">
+          <span class="tag tag-stream">Creative Technology</span>
+          <span class="tag tag-who">Miscellaneous</span>
+        </div>
+        <span class="project-name">Throw &amp; Pinch</span>
+        <p class="project-desc">A webcam hand-tracking tool that lets you throw and pinch a block of virtual clay, no headset or controller required.</p>
+        <span class="project-go">View project →</span>
+      </a>
+
+    </div>
+
+    <p class="no-results" id="noResults">No projects match that combination yet — try clearing a filter.</p>
+  </div>
+</section>
+
+<section id="fit">
+  <div class="wrap">
+    <div class="two-col reveal">
+      <div class="spec-panel">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <h3 class="section-title" style="margin-bottom:16px;">Who I work best with</h3>
+        <p>Clients who are forthcoming and willing to invest time turning their ideas into real, impactful products. I prefer knowing the structure I'll be working in at the beginning, rather than finding out along the way.</p>
+      </div>
+      <div class="spec-panel">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <h3 class="section-title" style="margin-bottom:16px;">Why hire me</h3>
+        <p>One agile, one-person R&amp;D lab in place of several specialists mechanical CAD, circuit diagrams, web design, UI animation and digital ergonomics, all handled without handoff friction, taking a messy idea to a realistic, high-fidelity proof of concept.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2 class="section-title reveal">Get in touch</h2>
+    <p class="section-statement reveal">Have an idea worth building?</p>
+    <p class="contact-copy reveal">Send over the brief and the package that fits Starter, Core, or Premium and I'll get back to you with next steps.</p>
+    <a class="cta-btn reveal" href="mailto:aadit.vanjari06@email.com">Start a project</a>
+  </div>
+</section>
+
+<footer>AADIT VANJARI - PRODUCT DESIGNER &amp; PROTOTYPIST</footer>
+
+<script>
+  // ---------- Project filter ----------
+  const grid = document.getElementById('projectGrid');
+  const noResults = document.getElementById('noResults');
+  const filterGroups = document.querySelectorAll('.filter-pills');
+  const active = { stream: 'all', who: 'all' };
+
+  filterGroups.forEach(group=>{
+    const groupName = group.dataset.group;
+    group.addEventListener('click', (e)=>{
+      const btn = e.target.closest('.pill');
+      if(!btn) return;
+      group.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      active[groupName] = btn.dataset.value;
+      applyFilters();
+    });
+  });
+
+  function applyFilters(){
+    if(!grid) return;
+    let visibleCount = 0;
+    grid.querySelectorAll('.project-card').forEach(card=>{
+      const streams = (card.dataset.stream || '').split(' ');
+      const whos = (card.dataset.who || '').split(' ');
+      const streamOk = active.stream === 'all' || streams.includes(active.stream);
+      const whoOk = active.who === 'all' || whos.includes(active.who);
+      const show = streamOk && whoOk;
+      card.classList.toggle('is-hidden', !show);
+      if(show) visibleCount++;
+    });
+    noResults.classList.toggle('show', visibleCount === 0);
+  }
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
